@@ -4,13 +4,13 @@ import java.util.*;
 public class DatabaseHelper {
     private static String url = "jdbc:mysql://localhost:3306/employeeData";
     private static String user = "root";
-    private static String password = "10312018";
+    private static String password = "10312018"; // This field is private but can be accessed through a getter
 
     // Utility method to execute the query and return results as a list of maps
     public static List<Map<String, Object>> executeQuery(String query) {
         List<Map<String, Object>> results = new ArrayList<>();
 
-        try (Connection myConn = DriverManager.getConnection(url, user, password);
+        try (Connection myConn = DriverManager.getConnection(url, user, getPassword());
                 Statement myStmt = myConn.createStatement();
                 ResultSet resultSet = myStmt.executeQuery(query)) {
 
@@ -31,5 +31,17 @@ public class DatabaseHelper {
         }
 
         return results;
+    }
+
+    public static String getUrl() {
+        return url;
+    }
+
+    public static String getUser() {
+        return user;
+    }
+
+    public static String getPassword() {
+        return password; // Public getter for password
     }
 }
