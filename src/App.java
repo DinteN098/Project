@@ -18,7 +18,28 @@ public class App {
 
             switch (choice) {
                 case 1:
-                    Report.displayReport();
+                    System.out.println("\nReport by:");
+                    System.out.println("1. Total pay for month by job title.");
+                    System.out.println("2. Total pay for month by job Division.");
+
+                    System.out.print("Enter you choice: ");
+                    choice = scanner.nextInt();
+                    scanner.nextLine();
+
+                    switch (choice) {
+                        case 1:
+                            System.out.print("Enter Date (e.g 2024-09): ");
+                            String date = scanner.nextLine();
+                            PayrollReport.totalPayByJobTitle(date);
+                            break;
+                        case 2:
+                            System.out.print("Enter Date (e.g 2024-09): ");
+                            date = scanner.nextLine();
+                            PayrollReport.totalPayByDivision(date);
+                        default:
+                            break;
+                    }
+
                     break;
                 case 3:
 
