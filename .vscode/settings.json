@@ -3,6 +3,15 @@
   "java.project.outputPath": "bin",
   "java.project.referencedLibraries": [
     "lib/**/*.jar",
-    "/Users/selvincastillo/Documents/college/fall 2024/soft dev/lab 5/project/Lab 5/src/mysql-connector-j-8.1.0.jar"
+    "/Users/selvincastillo/Documents/college/fall 2024/soft dev/lab 5/project/Lab 5/src/mysql-connector-j-8.1.0.jar",
+    "c:\\Users\\Nancy\\Documents\\gsu classes\\Fall 2024\\Software Dev\\mysql-connector-j-8.1.0\\mysql-connector-j-8.1.0.jar",
+    "c:\\Users\\Nancy\\Downloads\\openjfx-23.0.1_windows-x64_bin-sdk\\javafx-sdk-23.0.1\\lib\\javafx.base.jar",
+    "c:\\Users\\Nancy\\Downloads\\openjfx-23.0.1_windows-x64_bin-sdk\\javafx-sdk-23.0.1\\lib\\javafx.controls.jar",
+    "c:\\Users\\Nancy\\Downloads\\openjfx-23.0.1_windows-x64_bin-sdk\\javafx-sdk-23.0.1\\lib\\javafx.fxml.jar",
+    "c:\\Users\\Nancy\\Downloads\\openjfx-23.0.1_windows-x64_bin-sdk\\javafx-sdk-23.0.1\\lib\\javafx.graphics.jar",
+    "c:\\Users\\Nancy\\Downloads\\openjfx-23.0.1_windows-x64_bin-sdk\\javafx-sdk-23.0.1\\lib\\javafx.media.jar",
+    "c:\\Users\\Nancy\\Downloads\\openjfx-23.0.1_windows-x64_bin-sdk\\javafx-sdk-23.0.1\\lib\\javafx.swing.jar",
+    "c:\\Users\\Nancy\\Downloads\\openjfx-23.0.1_windows-x64_bin-sdk\\javafx-sdk-23.0.1\\lib\\javafx.web.jar",
+    "c:\\Users\\Nancy\\Downloads\\openjfx-23.0.1_windows-x64_bin-sdk\\javafx-sdk-23.0.1\\lib\\javafx-swt.jar"
   ]
 }

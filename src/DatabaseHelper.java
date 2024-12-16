@@ -4,7 +4,7 @@ import java.util.*;
 public class DatabaseHelper {
     private static String url = "jdbc:mysql://localhost:3306/employeeData";
     private static String user = "root";
-    private static String password = "10312018"; // This field is private but can be accessed through a getter
+    private static String password = "password00"; // This field is private but can be accessed through a getter
 
     // Utility method to execute the query and return results as a list of maps
     public static List<Map<String, Object>> executeQuery(String query) {
