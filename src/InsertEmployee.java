@@ -33,8 +33,7 @@ public class InsertEmployee {
     }
 
     // Method to gather employee input and return an Employee object
-    public static Employee getEmployeeFromInput() {
-        Scanner scanner = new Scanner(System.in);
+    public static Employee getEmployeeFromInput(Scanner scanner) {
 
         try {
             System.out.print("Enter first name: ");
