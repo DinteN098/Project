@@ -42,6 +42,23 @@ public class Controller implements Initializable {
 
     private ObservableList<Employee> employeeList;
 
+    @FXML
+    public void initialize() {
+        colEmpId.setCellValueFactory(new PropertyValueFactory<>("empid"));
+        colFname.setCellValueFactory(new PropertyValueFactory<>("Fname"));
+        colLname.setCellValueFactory(new PropertyValueFactory<>("Lname"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colHireDate.setCellValueFactory(new PropertyValueFactory<>("HireDate"));
+        colSalary.setCellValueFactory(new PropertyValueFactory<>("Salary"));
+        colSSN.setCellValueFactory(new PropertyValueFactory<>("SSN"));
+
+        loadEmployees();
+    }
+
+    private void loadEmployees() {
+        employeeList = FXCollections.observableArrayList(EmployeeDAO.getAllEmployees());
+        employeeTable.setItems(employeeList);
+    }
     public void connectButton() {
         DBConnection conn = new DBConnection("employeeData", "root", "password00","jdbc:mysql://localhost:3306/employeeData");
         Connection connectDB = conn.getConnection(); 
