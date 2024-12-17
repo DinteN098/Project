@@ -1,5 +1,5 @@
 import java.io.IOException;
-import java.sql.*;
+import java.sql.*; 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,7 +59,6 @@ public class Controller implements Initializable {
         employeeList = FXCollections.observableArrayList(EmployeeDAO.getAllEmployees());
         employeeTable.setItems(employeeList);
     }
-
     public void connectButton() {
         DBConnection conn = new DBConnection("employeeData", "root", "password00","jdbc:mysql://localhost:3306/employeeData");
         Connection connectDB = conn.getConnection(); 
