@@ -3,7 +3,7 @@ import java.sql.*;
 public class SearchEmployee {
 
     // Search by first name
-    public static void byFirstName(String firstName) {
+    public static Employee byFirstName(String firstName) {
         String query = "SELECT * FROM employees WHERE Fname = ?";
 
         try (Connection myConn = DriverManager.getConnection(DatabaseHelper.getUrl(), DatabaseHelper.getUser(),
@@ -13,17 +13,20 @@ public class SearchEmployee {
             stmt.setString(1, firstName);
             ResultSet resultSet = stmt.executeQuery();
 
-            // Print employee details
-            printEmployeeDetails(resultSet);
+            if (resultSet.next()) {
+                return mapResultSetToEmployee(resultSet);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error while searching for employee.");
         }
+
+        return null; // Return null if no employee is found
     }
 
     // Search by last name
-    public static void byLastName(String lastName) {
+    public static Employee byLastName(String lastName) {
         String query = "SELECT * FROM employees WHERE Lname = ?";
 
         try (Connection myConn = DriverManager.getConnection(DatabaseHelper.getUrl(), DatabaseHelper.getUser(),
@@ -33,17 +36,20 @@ public class SearchEmployee {
             stmt.setString(1, lastName);
             ResultSet resultSet = stmt.executeQuery();
 
-            // Print employee details
-            printEmployeeDetails(resultSet);
+            if (resultSet.next()) {
+                return mapResultSetToEmployee(resultSet);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error while searching for employee.");
         }
+
+        return null; // Return null if no employee is found
     }
 
     // Search by employee ID
-    public static void byEmpId(int empId) {
+    public static Employee byEmpId(int empId) {
         String query = "SELECT * FROM employees WHERE empid = ?";
 
         try (Connection myConn = DriverManager.getConnection(DatabaseHelper.getUrl(), DatabaseHelper.getUser(),
@@ -53,20 +59,26 @@ public class SearchEmployee {
             stmt.setInt(1, empId);
             ResultSet resultSet = stmt.executeQuery();
 
-            // Print employee details
-            printEmployeeDetails(resultSet);
+            if (resultSet.next()) {
+                // Fetch employee details
+                Employee employee = mapResultSetToEmployee(resultSet);
 
-            // Fetch and print payment history
-            printPaymentHistory(myConn, empId);
+                // Fetch and print payment history
+                printPaymentHistory(myConn, empId);
+
+                return employee;
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error while searching for employee.");
         }
+
+        return null; // Return null if no employee is found
     }
 
     // Search by SSN
-    public static void bySSN(String ssn) {
+    public static Employee bySSN(String ssn) {
         String query = "SELECT * FROM employees WHERE SSN = ?";
 
         try (Connection myConn = DriverManager.getConnection(DatabaseHelper.getUrl(), DatabaseHelper.getUser(),
@@ -76,31 +88,28 @@ public class SearchEmployee {
             stmt.setString(1, ssn);
             ResultSet resultSet = stmt.executeQuery();
 
-            // Print employee details
-            printEmployeeDetails(resultSet);
+            if (resultSet.next()) {
+                return mapResultSetToEmployee(resultSet);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error while searching for employee.");
         }
+
+        return null; // Return null if no employee is found
     }
 
-    // Helper method to print employee details
-    private static void printEmployeeDetails(ResultSet resultSet) throws SQLException {
-        System.out.printf("%-10s %-20s %-15s %-15s %-20s %-15s\n", "EmpID", "First Name", "Last Name", "Email",
-                "Hire Date", "Salary");
-        System.out.println(
-                "-----------------------------------------------------------------------------------------------");
-
-        while (resultSet.next()) {
-            System.out.printf("%-10s %-20s %-15s %-20s %-15s %-15s\n",
-                    resultSet.getString("empid"),
-                    resultSet.getString("Fname"),
-                    resultSet.getString("Lname"),
-                    resultSet.getString("email"),
-                    resultSet.getString("HireDate"),
-                    resultSet.getString("Salary"));
-        }
+    // Helper method to map ResultSet to Employee object
+    private static Employee mapResultSetToEmployee(ResultSet resultSet) throws SQLException {
+        return new Employee(
+                resultSet.getInt("empid"),
+                resultSet.getString("Fname"),
+                resultSet.getString("Lname"),
+                resultSet.getString("email"),
+                resultSet.getString("HireDate"),
+                resultSet.getDouble("Salary"),
+                resultSet.getString("SSN"));
     }
 
     // Helper method to fetch and print payment history
