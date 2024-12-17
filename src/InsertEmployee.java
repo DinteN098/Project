@@ -7,12 +7,16 @@ public class InsertEmployee {
 
     // Method to insert employee data into the database
     public static void addEmployeeToDatabase(Employee employee) {
-        String query = "INSERT INTO employees (first_name, last_name, email, hire_date, salary, ssn) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = """
+                    INSERT INTO employees (empid, fname, lname, email, hireDate, salary, ssn)
+                    VALUES ((SELECT MAX(empid) FROM employees E) + 1, ?, ?, ?, ?, ?, ?);
+                """;
 
         try (Connection conn = DriverManager.getConnection(DatabaseHelper.getUrl(), DatabaseHelper.getUser(),
                 DatabaseHelper.getPassword());
                 PreparedStatement stmt = conn.prepareStatement(query)) {
 
+            // Set empid (e.g., generate a unique value manually or retrieve from somewhere)
             stmt.setString(1, employee.getFname());
             stmt.setString(2, employee.getLname());
             stmt.setString(3, employee.getEmail());
